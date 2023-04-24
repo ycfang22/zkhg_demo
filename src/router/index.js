@@ -31,111 +31,108 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 export const constantRoutes = [{
-        path: '/login',
-        component: () =>
-            import ('@/views/login/index'),
-        hidden: true
-    },
+  path: '/login',
+  component: () =>
+    import ('@/views/login/index'),
+  hidden: true
+},
 
-    {
-        path: '/404',
-        component: () =>
-            import ('@/views/404'),
-        hidden: true
-    },
+{
+  path: '/404',
+  component: () =>
+    import ('@/views/404'),
+  hidden: true
+},
 
+{
+  path: '/',
+  component: Layout,
+  redirect: '/dashboard',
+  children: [{
+    path: 'dashboard',
+    name: 'Dashboard',
+    component: () =>
+      import ('@/views/dashboard/index'),
+    meta: { title: '首页', icon: 'dashboard' }
+  }]
+},
 
-    {
-        path: '/',
-        component: Layout,
-        redirect: '/dashboard',
-        children: [{
-            path: 'dashboard',
-            name: 'Dashboard',
-            component: () =>
-                import ('@/views/dashboard/index'),
-            meta: { title: '首页', icon: 'dashboard' }
-        }]
-    },
+{
+  path: '/',
+  component: Layout,
+  redirect: '/randarData',
+  children: [{
+    path: 'randarData',
+    name: 'RandarData',
+    component: () =>
+      import ('@/views/randarData/index'),
+    meta: { title: '雷达数据', icon: 'table' }
+  }]
+},
 
-    {
-        path: '/',
-        component: Layout,
-        redirect: '/dashboard',
-        children: [{
-            path: 'dashboard',
-            name: 'Dashboard',
-            component: () =>
-                import ('@/views/dashboard/index'),
-            meta: { title: '雷达数据', icon: 'el-icon-s-help' }
-        }]
-    },
+{
+  path: '/brand',
+  component: Layout,
+  redirect: '/brand/list',
+  name: 'Example',
+  meta: { title: '雷达管理', icon: 'el-icon-s-help' },
+  children: [{
+    path: 'list',
+    name: 'list',
+    component: () =>
+      import ('@/views/brand/index'),
+    meta: { title: '雷达列表', icon: 'table' }
+  },
+  {
+    path: 'add',
+    name: 'add',
+    component: () =>
+      import ('@/views/brand/add'),
+    meta: { title: '添加雷达', icon: 'tree' }
+  },
+  {
+    // /brand/edit/123
+    path: 'edit/:id',
+    name: 'edit',
+    // 此路由不需要在页面上显示
+    hidden: true,
+    component: () =>
+      import ('@/views/brand/add'),
+    meta: { title: '编辑雷达', icon: 'tree' }
+  }
+  ]
+},
+// {
+//     path: '/category',
+//     component: Layout,
+//     redirect: '/category/list',
+//     name: 'category',
+//     meta: { title: '数据管理', icon: 'el-icon-s-help' },
+//     children: [{
+//         path: 'list',
+//         name: 'category',
+//         component: () =>
+//             import ('@/views/category/index'),
+//         meta: { title: '数据列表', icon: 'table' }
+//     }]
+// },
 
-    {
-        path: '/brand',
-        component: Layout,
-        redirect: '/brand/list',
-        name: 'Example',
-        meta: { title: '雷达管理', icon: 'el-icon-s-help' },
-        children: [{
-                path: 'list',
-                name: 'list',
-                component: () =>
-                    import ('@/views/brand/index'),
-                meta: { title: '雷达列表', icon: 'table' }
-            },
-            {
-                path: 'add',
-                name: 'add',
-                component: () =>
-                    import ('@/views/brand/add'),
-                meta: { title: '添加雷达', icon: 'tree' }
-            },
-            {
-                // /brand/edit/123
-                path: 'edit/:id',
-                name: 'edit',
-                // 此路由不需要在页面上显示
-                hidden: true,
-                component: () =>
-                    import ('@/views/brand/add'),
-                meta: { title: '编辑雷达', icon: 'tree' }
-            }
-        ]
-    },
-    // {
-    //     path: '/category',
-    //     component: Layout,
-    //     redirect: '/category/list',
-    //     name: 'category',
-    //     meta: { title: '数据管理', icon: 'el-icon-s-help' },
-    //     children: [{
-    //         path: 'list',
-    //         name: 'category',
-    //         component: () =>
-    //             import ('@/views/category/index'),
-    //         meta: { title: '数据列表', icon: 'table' }
-    //     }]
-    // },
-
-
-
-    // 404 page must be placed at the end !!!
-    { path: '*', redirect: '/404', hidden: true }
+// 404 page must be placed at the end !!!
+{ path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({
-    // mode: 'history', // require service support
-    scrollBehavior: () => ({ y: 0 }),
-    routes: constantRoutes
+  // mode: 'history', // require service support
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRoutes
 })
 
 const router = createRouter()
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
-    const newRouter = createRouter()
-    router.matcher = newRouter.matcher // reset router
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
 }
 
 export default router
