@@ -101,24 +101,60 @@ export const constantRoutes = [{
     meta: { title: '编辑雷达', icon: 'tree' }
   }
   ]
-},
-// {
-//     path: '/category',
-//     component: Layout,
-//     redirect: '/category/list',
-//     name: 'category',
-//     meta: { title: '数据管理', icon: 'el-icon-s-help' },
-//     children: [{
-//         path: 'list',
-//         name: 'category',
-//         component: () =>
-//             import ('@/views/category/index'),
-//         meta: { title: '数据列表', icon: 'table' }
-//     }]
-// },
+}
+
+  // {
+  //     path: '/category',
+  //     component: Layout,
+  //     redirect: '/category/list',
+  //     name: 'category',
+  //     meta: { title: '数据管理', icon: 'el-icon-s-help' },
+  //     children: [{
+  //         path: 'list',
+  //         name: 'category',
+  //         component: () =>
+  //             import ('@/views/category/index'),
+  //         meta: { title: '数据列表', icon: 'table' }
+  //     }]
+  // },
 
 // 404 page must be placed at the end !!!
-{ path: '*', redirect: '/404', hidden: true }
+]
+
+export const asyncRoutes = [
+  // {
+  //   path: '/tool',
+  //   component: Layout,
+  //   redirect: '/tool/table',
+  //   name: 'tool',
+  //   alwaysShow: true,
+  //   meta: {
+  //     title: '工具箱',
+  //     icon: 'el-icon-s-help',
+  //     roles: ['admin']
+  //   },
+  //   children: [
+  //     {
+  //       path: 'mobilecode',
+  //       component: () => import('@views/permission/index'),
+  //       name: 'mobilecode',
+  //       meta: { title: '手机号生成验证码', roles: ['admin'] }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/permission',
+  //   component: Layout,
+  //   redirect: '/permission',
+  //   children: [{
+  //     path: '/',
+  //     name: 'RandarData',
+  //     component: () =>
+  //       import ('@/views/permission/index'),
+  //     meta: { title: '雷达jaide', icon: 'table', roles: ['admin'] }
+  //   }]
+  // },
+  { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({
